@@ -1,0 +1,41 @@
+<ng-template  place-holder></ng-template>
+<div class="row">
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+        <!-- <div class="alert alert-danger" *ngIf="error">
+            <p>{{error}}</p>
+        </div> -->
+        <!-- <app-alert [message]="error" *ngIf="error"></app-alert> -->
+ 
+        <form  #f="ngForm" (ngSubmit) = "onSubmit(f)" *ngIf="!isLoading; else loadingspinner"> 
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" 
+                name="email" class="form-control"
+                ngModel
+                required
+                email>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password"
+                 name="password" class="form-control"
+                 ngModel
+                 required
+                 minlength="6"
+                 >
+            </div>
+            <div>
+                <button class="btn btn-primary" [disabled]="!f.valid" type="submit">
+                    {{isLoginMode ? 'Login' : 'Sign Up'}}
+                </button>&nbsp;&nbsp;
+                <button class="btn btn-primary" (click)="onSwitchMode()" type="button" [disabled]="!f.valid">
+                    Switch to {{isLoginMode ? 'Sign Up' : 'Login'}}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<ng-template #loadingspinner style="text-align:center">
+    <loading-spinner></loading-spinner>
+</ng-template>    
